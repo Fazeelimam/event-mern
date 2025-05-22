@@ -18,7 +18,7 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const api = await fetch("http://localhost:2000/api/auth/signup", {
+      const api = await fetch("https://event-mern-backend.vercel.app/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({ name, email, contact, password }),
         headers: {
