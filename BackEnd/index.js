@@ -1,3 +1,47 @@
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import cors from 'cors';
+// import cookieParser from 'cookie-parser';
+// import userRouter from './router/auth.js';
+// import messageRouter from './router/message.js';
+// import ConnectDB from './Connection/conn.js';
+
+// dotenv.config();
+
+// const app = express();
+// const PORT = process.env.PORT || 2000;
+
+// // Middleware
+// app.use(cors({
+//   origin: "https://event-mern-frontend.vercel.app",
+//   credentials: true
+// }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(cookieParser());
+
+// // Routes
+// app.use('/api/message', messageRouter);
+// app.use('/api/auth', userRouter);
+
+// // Start the server **after successful MongoDB connection**
+// const startServer = async () => {
+//   try {
+//     await ConnectDB(); // Wait for DB connection
+//     console.log('✅ MongoDB connected');
+
+//     app.listen(PORT, () => {
+//       console.log(`🚀 Server running on http://localhost:${PORT}`);
+//     });
+//   } catch (err) {
+//     console.error('❌ Failed to connect to MongoDB:', err.message);
+//     process.exit(1); // Exit the app if DB fails to connect
+//   }
+// };
+
+// startServer();
+
+
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -11,31 +55,51 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 2000;
 
-// Middleware
+// Allow multiple frontend origins (for dev, prod, test)
+const allowedOrigins = [
+  "https://event-mern-frontend.vercel.app",
+  "https://event-mern-frontend-myportfolio-projects.vercel.app"
+];
+
+// CORS middleware
 app.use(cors({
-  origin: "https://event-mern-frontend.vercel.app",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
+
+// Basic middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Routes
-app.use('/api/message', messageRouter);
-app.use('/api/auth', userRouter);
+// Debug incoming origin (optional)
+app.use((req, res, next) => {
+  console.log("🛡️ Origin:", req.headers.origin);
+  next();
+});
 
-// Start the server **after successful MongoDB connection**
+// API Routes
+app.use('/api/auth', userRouter);
+app.use('/api/message', messageRouter);
+
+// Start server after DB connection
 const startServer = async () => {
   try {
-    await ConnectDB(); // Wait for DB connection
-    console.log('✅ MongoDB connected');
+    await ConnectDB();
+    console.log("✅ MongoDB connected");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`🚀 Server is running at http://localhost:${PORT}`);
     });
-  } catch (err) {
-    console.error('❌ Failed to connect to MongoDB:', err.message);
-    process.exit(1); // Exit the app if DB fails to connect
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error.message);
+    process.exit(1); // Exit app
   }
 };
 
