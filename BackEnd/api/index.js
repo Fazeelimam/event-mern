@@ -112,7 +112,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from './Router/auth.js'; // 👈 Corrected from ./router/
 import messageRouter from './Router/message.js'; // 👈 Corrected
-import ConnectDB from './Connection/conn.js'; // Assuming you have this correctly
+import ConnectDB from './api/Connection/conn.js'; // Assuming you have this correctly
 
 dotenv.config();
 
