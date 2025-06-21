@@ -113,8 +113,8 @@ import cookieParser from 'cookie-parser';
 
 // ✅ Correct paths (no extra "api/", lowercase folders)
 import ConnectDB from './connection/conn.js';
-import userRouter from './router/auth.js';
-import messageRouter from './router/message.js';
+import userRouter from './Router/auth.js';
+import messageRouter from './Router/message.js';
 
 dotenv.config();
 
