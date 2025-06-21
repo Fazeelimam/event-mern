@@ -42,70 +42,6 @@
 // startServer();
 
 // 2nd
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import cors from 'cors';
-// import cookieParser from 'cookie-parser';
-// import userRouter from './router/auth.js';
-// import messageRouter from './router/message.js';
-// import ConnectDB from './Connection/conn.js';
-
-// dotenv.config();
-
-// const app = express();
-// const PORT = process.env.PORT || 2000;
-
-// // Allow multiple frontend origins (for dev, prod, test)
-// const allowedOrigins = [
-//   "https://event-mern-frontend.vercel.app",
-//   "https://event-mern-frontend-myportfolio-projects.vercel.app"
-// ];
-
-// // CORS middleware
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true
-// }));
-
-// // Basic middleware
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
-
-// // Debug incoming origin (optional)
-// app.use((req, res, next) => {
-//   console.log("🛡️ Origin:", req.headers.origin);
-//   next();
-// });
-
-// // API Routes
-// app.use('/api/auth', userRouter);
-// app.use('/api/message', messageRouter);
-
-// // Start server after DB connection
-// const startServer = async () => {
-//   try {
-//     await ConnectDB();
-//     console.log("✅ MongoDB connected");
-
-//     app.listen(PORT, () => {
-//       console.log(`🚀 Server is running at http://localhost:${PORT}`);
-//     });
-//   } catch (error) {
-//     console.error("❌ MongoDB connection failed:", error.message);
-//     process.exit(1); // Exit app
-//   }
-// };
-
-// startServer();
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -117,6 +53,7 @@ import ConnectDB from './Connection/conn.js';
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 2000;
 
 // Allow multiple frontend origins (for dev, prod, test)
 const allowedOrigins = [
@@ -151,14 +88,77 @@ app.use((req, res, next) => {
 app.use('/api/auth', userRouter);
 app.use('/api/message', messageRouter);
 
-// Immediately connect to DB once
-ConnectDB()
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err.message);
-    process.exit(1); // Stop execution on DB failure
-  });
+// Start server after DB connection
+const startServer = async () => {
+  try {
+    await ConnectDB();
+    console.log("✅ MongoDB connected");
 
-// Export the app for Vercel
-export default app;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error.message);
+    process.exit(1); // Exit app
+  }
+};
+
+startServer();
+
+
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import cors from 'cors';
+// import cookieParser from 'cookie-parser';
+// import userRouter from './router/auth.js';
+// import messageRouter from './router/message.js';
+// import ConnectDB from './Connection/conn.js';
+
+// dotenv.config();
+
+// const app = express();
+
+// // Allow multiple frontend origins (for dev, prod, test)
+// const allowedOrigins = [
+//   "https://event-mern-frontend.vercel.app",
+//   "https://event-mern-frontend-myportfolio-projects.vercel.app"
+// ];
+
+// // CORS middleware
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
+
+// // Basic middleware
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(cookieParser());
+
+// // Debug incoming origin (optional)
+// app.use((req, res, next) => {
+//   console.log("🛡️ Origin:", req.headers.origin);
+//   next();
+// });
+
+// // API Routes
+// app.use('/api/auth', userRouter);
+// app.use('/api/message', messageRouter);
+
+// // Immediately connect to DB once
+// ConnectDB()
+//   .then(() => console.log("✅ MongoDB connected"))
+//   .catch((err) => {
+//     console.error("❌ MongoDB connection failed:", err.message);
+//     process.exit(1); // Stop execution on DB failure
+//   });
+
+// // Export the app for Vercel
+// export default app;
 
