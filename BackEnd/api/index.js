@@ -110,22 +110,23 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import userRouter from './Router/auth.js'; // 👈 Corrected from ./router/
-import messageRouter from './Router/message.js'; // 👈 Corrected
-import ConnectDB from './api/Connection/conn.js'; // Assuming you have this correctly
+
+// ✅ Correct paths (no extra "api/", lowercase folders)
+import ConnectDB from './connection/conn.js';
+import userRouter from './router/auth.js';
+import messageRouter from './router/message.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 2000;
 
-// Allow multiple frontend origins (for dev, prod, test)
 const allowedOrigins = [
   "https://event-mern-frontend.vercel.app",
   "https://event-mern-frontend-myportfolio-projects.vercel.app"
 ];
 
-// CORS middleware
+// ✅ CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -137,33 +138,38 @@ app.use(cors({
   credentials: true
 }));
 
-// Basic middleware
+// ✅ Body parsing and cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Debug incoming origin (optional)
+// 🔍 Debug log for origin
 app.use((req, res, next) => {
   console.log("🛡️ Origin:", req.headers.origin);
   next();
 });
 
-// API Routes
+// ✅ Routes
 app.use('/api/auth', userRouter);
 app.use('/api/message', messageRouter);
 
-// Start server after DB connection
+// ✅ Root test route
+app.get('/', (req, res) => {
+  res.status(200).json({ message: "✅ Backend is running" });
+});
+
+// ✅ MongoDB connection and server start
 const startServer = async () => {
   try {
     await ConnectDB();
     console.log("✅ MongoDB connected");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server is running at http://localhost:${PORT}`);
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error("❌ MongoDB connection failed:", error.message);
-    process.exit(1); // Exit app
+    process.exit(1);
   }
 };
 
