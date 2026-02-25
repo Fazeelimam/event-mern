@@ -47,9 +47,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import userRouter from '../router/auth.js';
-import messageRouter from '../router/message.js';
-import ConnectDB from '../Connection/conn.js';
+import userRouter from './router/auth.js';
+import messageRouter from './router/message.js';
+import ConnectDB from './Connection/conn.js';
 
 dotenv.config();
 
