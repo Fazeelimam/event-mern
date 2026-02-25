@@ -1,0 +1,138 @@
+/* Reset */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full page background */
+body, html, #root {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #4E2A1E; /* Default dark brown text */
+}
+
+/* Background layout */
+.signup-page {
+  min-height: 100vh;
+  width: 100%;
+  background: url('/restaurant.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Glassmorphism card */
+.signup-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  color: #4E2A1E;
+}
+
+/* Main heading */
+.event-heading {
+  position: absolute;
+  top: 40px;
+  font-size: 48px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+/* Page title like "Create Account" */
+.create-account {
+  font-size: 22px;
+  font-weight: bold;
+  color: #4E2A1E;
+  margin-bottom: 20px;
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #4E2A1E;
+  font-size: 14px;
+}
+
+.input-group input::placeholder {
+  color: #8B6C5C;
+}
+
+.input-group input:focus {
+  outline: none;
+  border: 1px solid #A9745B;
+  background: #fff;
+}
+
+/* Input icon */
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4E2A1E;
+  font-size: 16px;
+}
+
+/* Submit Button */
+button {
+  padding: 12px;
+  background-color: #FFD699;
+  color: #4E2A1E;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FFCC80;
+  transform: translateY(-1px);
+}
+
+/* Login link */
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #4E2A1E;
+}
+
+.login-link a {
+  color: #4E2A1E;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
