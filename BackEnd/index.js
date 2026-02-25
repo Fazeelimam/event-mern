@@ -70,8 +70,9 @@ app.use('/api/message', messageRouter);
 app.use('/api/auth', userRouter);
 
 // Connect to DB
-await ConnectDB();
-console.log('✅ MongoDB connected');
+ConnectDB()
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("MongoDB error:", err));
 
 // Only listen locally, Vercel handles this in prod
 if (process.env.NODE_ENV !== 'production') {
