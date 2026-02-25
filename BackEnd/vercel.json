@@ -3,8 +3,7 @@
   "builds": [
     {
       "src": "BackEnd/index.js",
-      "use": "@vercel/node",
-      "config": { "includeFiles": ["BackEnd/**"] }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
