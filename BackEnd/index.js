@@ -68,6 +68,9 @@ app.use(cookieParser());
 // Routes
 app.use('/api/message', messageRouter);
 app.use('/api/auth', userRouter);
+app.get("/", (req, res) => {
+  res.send("BackEnd Running 🚀")
+})
 
 // Connect to DB
 ConnectDB()
