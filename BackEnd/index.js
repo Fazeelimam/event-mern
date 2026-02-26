@@ -81,6 +81,22 @@ app.use('/api/auth', userRouter);
 app.get("/", (req, res) => {
   res.send("BackEnd Running 🚀")
 })
+app.get('/api/health', (req, res) => {
+  const dbState = mongoose.connection.readyState;
+  const states = {
+    0: 'disconnected',
+    1: 'connected',
+    2: 'connecting',
+    3: 'disconnecting'
+  };
+
+  res.json({
+    status: 'ok',
+    mongodb: states[dbState],
+    mongoURI_exists: !!process.env.MONGO_URI,
+    mongoURI_preview: process.env.MONGO_URI?.substring(0, 30) || 'not set'
+  });
+});
 
 // Connect to DB
 ConnectDB()
