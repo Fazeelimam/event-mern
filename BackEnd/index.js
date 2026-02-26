@@ -57,9 +57,19 @@ const app = express();
 const PORT = process.env.PORT || 2000;
 
 // Middleware
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+//   credentials: true
+// }));
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
+  origin: [
+    'http://localhost:5173',           // Local Vite dev server
+    'http://localhost:3000',           // Alternative local port
+    'https://event-mern.netlify.app'   // Your Netlify domain
+  ],
+  credentials: true,                   // Allow cookies
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
