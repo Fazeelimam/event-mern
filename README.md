@@ -168,10 +168,11 @@ http://localhost:5173
 <img width="959" height="437" alt="5" src="https://github.com/user-attachments/assets/0c2e563e-7048-4eca-988f-a2062f023492" />
 
 ## Services
-<img width="959" height="403" alt="3" src="https://github.com/user-attachments/assets/4ccf3ede-2d9b-4615-bc93-bc2c684a95cf" />
+<img width="955" height="440" alt="2" src="https://github.com/user-attachments/assets/72ba3e39-10ab-4c9e-b812-250d454b8c13" />
+
 
 ## Contact Page
-![Contact](screenshots/contact.png)
+<img width="959" height="403" alt="3" src="https://github.com/user-attachments/assets/4ccf3ede-2d9b-4615-bc93-bc2c684a95cf" />
 
 ⭐ Support
 If you like this project, please give it a star ⭐ on GitHub.
