@@ -74,7 +74,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Connect to MongoDB
-ConnectDB().catch(err => console.error("MongoDB connection error:", err));
+// ConnectDB().catch(err => console.error("MongoDB connection error:", err));
+app.use(async (req, res, next) => {
+  try {
+    await ConnectDB();
+    next();
+  } catch (error) {
+    console.error('DB connection error:', error);
+    res.status(500).json({
+      message: "Database connection failed",
+      error: error.message
+    });
+  }
+});
 
 // Home route
 app.get("/", (req, res) => {

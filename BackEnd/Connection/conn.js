@@ -73,10 +73,16 @@ const ConnectDB = async () => {
     console.log('🔄 Connecting to MongoDB...');
 
     cached.promise = mongoose.connect(mongoURI, {
-      bufferCommands: false,
+      // Removed bufferCommands: false - this was causing the issue
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
     }).then((mongoose) => {
       console.log('✅ MongoDB connected!');
       return mongoose;
+    }).catch((err) => {
+      console.error('❌ Connection failed:', err.message);
+      cached.promise = null; // Reset on failure
+      throw err;
     });
   }
 
