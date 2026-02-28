@@ -55,7 +55,6 @@ import Home from "./Components/Home";
 import ServiceSection from "./Components/Services";
 import AboutSection from "./Components/About";
 import ContactSection from "./Components/Contact";
-import FooterSection from "./Components/Footer";
 
 export default function App() {
   return (
@@ -65,7 +64,6 @@ export default function App() {
       <Routes>
         {/* Public Routes - Anyone can access without login */}
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<ServiceSection />} />
         <Route path="/about" element={<AboutSection />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/signup" element={<Signup />} />
@@ -73,7 +71,7 @@ export default function App() {
 
         {/* Protected Routes - Require login */}
         <Route element={<Auth />}>
-          {/* Add protected routes here if you have any */}
+          <Route path="/services" element={<ServiceSection />} />
           {/* Example: <Route path="/dashboard" element={<Dashboard />} /> */}
         </Route>
       </Routes>
