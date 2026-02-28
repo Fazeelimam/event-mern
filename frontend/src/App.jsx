@@ -55,6 +55,7 @@ import Home from "./Components/Home";
 import ServiceSection from "./Components/Services";
 import AboutSection from "./Components/About";
 import ContactSection from "./Components/Contact";
+import FooterSection from "./Components/Footer";
 
 export default function App() {
   return (
@@ -64,20 +65,35 @@ export default function App() {
       <Routes>
         {/* Public Routes - Anyone can access without login */}
         <Route path="/" element={<Home />} />
+        <Route path="/services" element={<ServiceSection />} />
         <Route path="/about" element={<AboutSection />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes - Require login */}
+        {/* Protected Routes - Require login (add your protected routes here) */}
         <Route element={<Auth />}>
-          <Route path="/services" element={<ServiceSection />} />
           {/* Example: <Route path="/dashboard" element={<Dashboard />} /> */}
         </Route>
       </Routes>
 
+      {/* Footer on all pages */}
+      <FooterSection />
+
       {/* Toast notifications */}
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </BrowserRouter>
   );
 }
