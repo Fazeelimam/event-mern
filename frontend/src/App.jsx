@@ -43,6 +43,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
 // Authentication
 import Signup from "./Authentication/Signup";
