@@ -41,7 +41,7 @@
 
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Authentication
@@ -63,22 +63,20 @@ export default function App() {
       <Navbar />
 
       <Routes>
-        {/* Public Routes */}
+        {/* Public Routes - Anyone can access without login */}
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<ServiceSection />} />
+        <Route path="/about" element={<AboutSection />} />
+        <Route path="/contact" element={<ContactSection />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes */}
+        {/* Protected Routes - Require login */}
         <Route element={<Auth />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<ServiceSection />} />
-          <Route path="/about" element={<AboutSection />} />
-          <Route path="/contact" element={<ContactSection />} />
-          <Route path="/footer" element={<FooterSection />} />
+          {/* Add protected routes here if you have any */}
+          {/* Example: <Route path="/dashboard" element={<Dashboard />} /> */}
         </Route>
       </Routes>
-
-      {/* Footer (if you want it on all pages) */}
-      <FooterSection />
 
       {/* Toast notifications */}
       <ToastContainer />
