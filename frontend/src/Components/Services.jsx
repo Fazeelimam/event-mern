@@ -1,69 +1,69 @@
-import React from 'react'
+import React from "react";
 
 export default function ServiceSection() {
   const services = [
     {
       id: 1,
-      url: "/birthday.jpg",
+      url: "/images/birthday.jpg",
       title: "Birthday Planning",
     },
     {
       id: 2,
-      url: "/anniversary.jpg",
+      url: "/images/anniversary.jpg",
       title: "Anniversary Planning",
     },
     {
       id: 3,
-      url: "/camping.jpg",
+      url: "/images/camping.jpg",
       title: "Camping Trip Planning",
     },
     {
       id: 4,
-      url: "/gamenight.jpg",
+      url: "/images/gamenight.jpg",
       title: "Game Night Planning",
     },
     {
       id: 5,
-      url: "/party.jpg",
+      url: "/images/party.jpg",
       title: "Party Planning",
     },
     {
       id: 6,
-      url: "/wedding.jpg",
+      url: "/images/wedding.jpg",
       title: "Wedding Planning",
     },
     {
       id: 7,
-      url: "/pic1.jpg",
+      url: "/images/pic1.jpg",
       title: "Concert Planning",
     },
     {
       id: 8,
-      url: "/pic2.jpg",
+      url: "/images/pic2.jpg",
       title: "Night-Out Planning",
     },
     {
       id: 9,
-      url: "/pic3.jpg",
+      url: "/images/pic3.jpg",
       title: "Evening Planning",
     },
   ];
-  
+
   return (
     <>
-    <div className="services container">
-      <h2>OUR SERVICES</h2>
-      <div className="banner">
-        {services.map((element) => {
-          return (
-            <div className="item" key={element.id}>
-              <h3>{element.title}</h3>
-              <img src={element.url} alt={element.title} />
-            </div>
-          );
-        })}
+      <div className="services container">
+        <h2>OUR SERVICES</h2>
+        <div className="banner">
+          {services.map((element) => {
+            return (
+              <div className="item" key={element.id}>
+                <h3>{element.title}</h3>
+                <img src={element.url} alt={element.title} />
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </>
-  )
+    </>
+  );
 }
